@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App7.Views.AboutPage"
+             xmlns:vm="clr-namespace:App7.ViewModels;"
+             xmlns:view="clr-namespace:App7.Views;"
+             Title="{Binding Title}">
+  <ContentPage.BindingContext>
+    <vm:BrobiViewModel />
+  </ContentPage.BindingContext>
+  <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Switch Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" IsToggled="{Binding Led}">Лампочка</Switch>
+        <Slider Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Value="{Binding ServoPosition}" Minimum="0" Maximum="180"/>
+        <Entry Grid.Row="2" Grid.Column="0" Text="{Binding LeftSpeed}"></Entry>
+        <Entry Grid.Row="2" Grid.Column="1" Text="{Binding RightSpeed}"></Entry>
+        <view:CustomButton Grid.Row="3" Grid.Column="0" VerticalOptions="FillAndExpand" Text="Forward" 
+                           Pressed="lbfPressed" Released="lbfReleased"/>
+        <view:CustomButton Grid.Row="3" Grid.Column="1" VerticalOptions="FillAndExpand" Text="Forward"
+                           Pressed="rbfPressed" Released="rbfReleased"/>
+        <view:CustomButton Grid.Row="4" Grid.Column="0" VerticalOptions="FillAndExpand" Text="Back"
+                           Pressed="lbbPressed" Released="lbbReleased"/>
+        <view:CustomButton Grid.Row="4" Grid.Column="1" VerticalOptions="FillAndExpand" Text="Back"
+                           Pressed="rbbPressed" Released="rbbReleased"/>
+    </Grid>
+</ContentPage>
