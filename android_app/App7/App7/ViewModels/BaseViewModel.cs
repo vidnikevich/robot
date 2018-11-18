@@ -1,18 +1,9 @@
 ﻿using App7.Helpers;
-using App7.Models;
-using App7.Services;
-
-using Xamarin.Forms;
 
 namespace App7.ViewModels
 {
     public class BaseViewModel : ObservableObject
     {
-        /// <summary>
-        /// Get the azure service instance
-        /// </summary>
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-
         bool isBusy = false;
         public bool IsBusy
         {
