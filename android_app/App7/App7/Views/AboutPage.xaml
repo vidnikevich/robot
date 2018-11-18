@@ -24,13 +24,13 @@
         <Slider Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Value="{Binding ServoPosition}" Minimum="0" Maximum="180"/>
         <Entry Grid.Row="2" Grid.Column="0" Text="{Binding LeftSpeed}"></Entry>
         <Entry Grid.Row="2" Grid.Column="1" Text="{Binding RightSpeed}"></Entry>
-        <view:CustomButton Grid.Row="3" Grid.Column="0" VerticalOptions="FillAndExpand" Text="Forward" 
+        <Button Grid.Row="3" Grid.Column="0" VerticalOptions="FillAndExpand" Text="Forward" 
                            Pressed="lbfPressed" Released="lbfReleased"/>
-        <view:CustomButton Grid.Row="3" Grid.Column="1" VerticalOptions="FillAndExpand" Text="Forward"
+        <Button Grid.Row="3" Grid.Column="1" VerticalOptions="FillAndExpand" Text="Forward"
                            Pressed="rbfPressed" Released="rbfReleased"/>
-        <view:CustomButton Grid.Row="4" Grid.Column="0" VerticalOptions="FillAndExpand" Text="Back"
+        <Button Grid.Row="4" Grid.Column="0" VerticalOptions="FillAndExpand" Text="Back"
                            Pressed="lbbPressed" Released="lbbReleased"/>
-        <view:CustomButton Grid.Row="4" Grid.Column="1" VerticalOptions="FillAndExpand" Text="Back"
+        <Button Grid.Row="4" Grid.Column="1" VerticalOptions="FillAndExpand" Text="Back"
                            Pressed="rbbPressed" Released="rbbReleased"/>
     </Grid>
 </ContentPage>

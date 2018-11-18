@@ -1,5 +1,4 @@
-﻿using Sockets.Plugin;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,13 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Net.Sockets;
 
 namespace App7.ViewModels
 {
     public class BrobiViewModel : BaseViewModel
     {
-        private UdpSocketClient _client = new UdpSocketClient();
-        private int _port = 1000;
+        private const int _port = 1000;
+        private UdpClient _client;
+        
         byte _left = 0;
         byte _right = 0;
         byte _rightSpeed = 100;
@@ -27,9 +28,7 @@ namespace App7.ViewModels
         public BrobiViewModel()
         {
             Title = "БРОБИ";
-            _client = new UdpSocketClient();
-
-
+            _client = new UdpClient();
 
             ForwardCommand = new Command(async () =>
             {
@@ -37,7 +36,7 @@ namespace App7.ViewModels
                 {
                     var msg = "FORWARD   ";
                     var msgBytes = Encoding.UTF8.GetBytes(msg);
-                    await _client.SendToAsync(msgBytes, address, _port);
+                    await _client.SendAsync(msgBytes, msgBytes.Length, address, _port);
                 }
                 catch (Exception e)
                 {
@@ -52,7 +51,7 @@ namespace App7.ViewModels
                 {
                     var msg = "STOP      ";
                     var msgBytes = Encoding.UTF8.GetBytes(msg);
-                    await _client.SendToAsync(msgBytes, address, _port);
+                    await _client.SendAsync(msgBytes, msgBytes.Length, address, _port);
                 }
                 catch (Exception e)
                 {
@@ -123,7 +122,7 @@ namespace App7.ViewModels
             try
             {
                 var cmd = new byte[] { (byte)'C', (byte)'M', (byte)'D', (byte)':', _left, _leftSpeed, _right, _rightSpeed, _servoPosition, _ledState };
-                await _client.SendToAsync(cmd, address, _port);
+                await _client.SendAsync(cmd, cmd.Length, address, _port);
                 lock (_lock)
                 {
                     if (needSendAgain)
